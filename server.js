@@ -8,7 +8,7 @@ const app = express();
 app.use(
   cors({
     origin:
-      "https://instagram-downloader-kappa.vercel.app/instagramData" |
+      "https://instagram-downloader-kappa.vercel.app/instagramData" ||
       "https://instagram-downloader-kappa.vercel.app",
   })
 );
