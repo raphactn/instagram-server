@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(
   cors({
-    origin: "https://instagram-downloader-kappa.vercel.app/",
+    origin: "https://instagram-downloader-kappa.vercel.app/instagramData",
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
