@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer");
 const ListResultsServices = async ({ data }) => {
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
-    headless: false,
+    headless: true,
   });
 
   let error = false;
