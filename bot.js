@@ -7,6 +7,7 @@ const ListResultsServices = async ({ data }) => {
       "--disable-web-security",
       "--disable-features=IsolateOrigins",
       "--disable-site-isolation-trials",
+      "--disable-setuid-sandbox"
     ],
     headless: true,
   });
