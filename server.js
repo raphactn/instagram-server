@@ -13,6 +13,7 @@ app.use(
     origin: [
       "https://instagram-downloader-kappa.vercel.app/",
       "https://instagram-downloader-kappa.vercel.app",
+      "https://instagramserverapi.herokuapp.com/instagramData",
       "http://localhost:3000",
     ],
   })
