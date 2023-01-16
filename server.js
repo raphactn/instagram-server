@@ -5,9 +5,6 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.json());
 app.use(
   cors({
     origin: [
@@ -16,8 +13,24 @@ app.use(
       "https://instagramserverapi.herokuapp.com/instagramData",
       "http://localhost:3000",
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Origin",
+      "X-Requested-With",
+      "Accept",
+      "x-client-key",
+      "x-client-token",
+      "x-client-secret",
+      "Authorization",
+    ],
+    credentials: true,
   })
 );
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.json());
+
 
 app.post("/instagramData", async (req, res) => {
   const { body } = req.body;
