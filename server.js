@@ -8,9 +8,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://instagram-downloader-kappa.vercel.app/",
-      "https://instagram-downloader-kappa.vercel.app",
-      "https://instagramserverapi.herokuapp.com/instagramData",
+      `https://instagram-downloader-kappa.vercel.app:${PORT}`,
       "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
