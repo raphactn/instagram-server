@@ -8,14 +8,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  app.use(cors());
-  next();
-});
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.post("/instagramData", async (req, res) => {
   const { body } = req.body;
