@@ -2,6 +2,7 @@ const express = require("express");
 const ListResultsServices = require("./bot");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -19,6 +20,14 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
+
+app.use(
+  "/instagramData",
+  createProxyMiddleware({
+    target: "https://instagramserverapi.herokuapp.com/instagramData",
+    changeOrigin: true,
+  })
+);
 
 app.get("/instagramData", async (req, res) => {
   const { url } = req.query;
