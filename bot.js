@@ -1,7 +1,7 @@
-const puppeteer = require("puppeteer");
+import chromium from "chrome-aws-lambda";
 
 const ListResultsServices = async ({ data }) => {
-  const browser = await puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     args: [
       "--no-sandbox",
       "--disable-web-security",
