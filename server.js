@@ -1,13 +1,23 @@
 const express = require("express");
-const cors = require("cors");
+const ListResultsServices = require("./bot");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 const timeout = require("connect-timeout");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(cors())
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-const ListResultsServices = require("./bot");
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 app.use(
   bodyParser.urlencoded({
@@ -21,6 +31,8 @@ app.use(express.json());
 
 app.post("/instagramData", async (req, res) => {
   const { url } = req.body;
+  console.log(url);
+
   if (url) {
     const result = await ListResultsServices({ data: url });
     return res.send(result);
@@ -30,4 +42,5 @@ app.post("/instagramData", async (req, res) => {
 
 app.listen(PORT, (err) => {
   if (err) throw err;
+  console.log(`server start on port ${PORT}`);
 });
