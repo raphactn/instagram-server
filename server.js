@@ -3,7 +3,7 @@ const ListResultsServices = require("./bot");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const timeout = require('connect-timeout')
+const timeout = require("connect-timeout");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(
     extended: true,
   })
 );
-app.use(timeout('20s'))
+app.use(timeout("20s"));
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -37,7 +37,7 @@ app.use(
   })
 );
 
-app.get("/instagramData", async (req, res) => {
+app.get("/instagramData", timeout("20s"), async (req, res) => {
   const { url } = req.query;
   if (url) {
     const result = await ListResultsServices({ data: url });
