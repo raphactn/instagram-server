@@ -19,7 +19,6 @@ app.use(
     extended: true,
   })
 );
-app.use(timeout("20s"));
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -28,15 +27,6 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-
-app.use(
-  "/instagramData",
-  createProxyMiddleware({
-    target: "https://instagramserverapi.herokuapp.com",
-    changeOrigin: true,
-    secure: false
-  })
-);
 
 app.get("/instagramData", timeout("20s"), async (req, res) => {
   const { url } = req.query;

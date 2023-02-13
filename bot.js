@@ -7,7 +7,7 @@ const ListResultsServices = async ({ data }) => {
       "--disable-web-security",
       "--disable-features=IsolateOrigins",
       "--disable-site-isolation-trials",
-      "--disable-setuid-sandbox"
+      "--disable-setuid-sandbox",
     ],
     headless: true,
   });
@@ -19,7 +19,7 @@ const ListResultsServices = async ({ data }) => {
   page = await browser.newPage();
   page.setCacheEnabled(false);
 
-  /*   await page.goto("https://cors-anywhere.herokuapp.com");
+  await page.goto("https://cors-anywhere.herokuapp.com");
 
   const selector = await page.$(
     "body > form > p:nth-child(2) > input[type=submit]:nth-child(1)"
@@ -30,7 +30,7 @@ const ListResultsServices = async ({ data }) => {
       "body > form > p:nth-child(2) > input[type=submit]:nth-child(1)",
       { delay: 10, clickCount: 2 }
     );
-  } */
+  }
 
   await page.goto(data);
 
