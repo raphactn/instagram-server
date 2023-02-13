@@ -32,8 +32,9 @@ app.use(function (req, res, next) {
 app.use(
   "/instagramData",
   createProxyMiddleware({
-    target: "https://instagramserverapi.herokuapp.com/instagramData",
+    target: "https://instagramserverapi.herokuapp.com",
     changeOrigin: true,
+    secure: false
   })
 );
 
