@@ -6,16 +6,7 @@ const timeout = require("connect-timeout");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(
-  cors({
-    origin: [
-      "https://instagram-downloader-kappa.vercel.app",
-      "https://instagramserverapi.herokuapp.com/instagramData",
-      "https://instagramserverapi.herokuapp.com",
-      "http://localhost:3000",
-    ],
-  })
-);
+
 app.use(
   bodyParser.urlencoded({
     parameterLimit: 100000,
@@ -26,7 +17,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.json());
 
-app.post("/instagramData", async (req, res) => {
+app.post("/instagramData", cors(), async (req, res) => {
   const { url } = req.body;
   if (url) {
     const result = await ListResultsServices({ data: url });
