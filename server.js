@@ -28,8 +28,17 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/instagramData", timeout("20s"), async (req, res) => {
-  const { url } = req.query;
+/* app.use(
+  "/instagramData",
+  createProxyMiddleware({
+    target: "http://localhost:5000",
+    secure: false,
+    changeOrigin: true,
+  })
+); */
+
+app.post("/instagramData", async (req, res) => {
+  const { url } = req.body;
   if (url) {
     const result = await ListResultsServices({ data: url });
     return res.send(result);
