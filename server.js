@@ -8,7 +8,12 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(
   cors({
-    origin: ["https://instagram-downloader-kappa.vercel.app", "http://localhost:3000"],
+    origin: [
+      "https://instagram-downloader-kappa.vercel.app",
+      "https://instagramserverapi.herokuapp.com/instagramData",
+      "https://instagramserverapi.herokuapp.com",
+      "http://localhost:3000",
+    ],
   })
 );
 app.use(
