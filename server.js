@@ -1,11 +1,13 @@
 const express = require("express");
-const ListResultsServices = require("./bot");
-const bodyParser = require("body-parser");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const timeout = require("connect-timeout");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+app.use(cors())
+
+const ListResultsServices = require("./bot");
 
 app.use(
   bodyParser.urlencoded({
@@ -17,7 +19,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.json());
 
-app.post("/instagramData", cors(), async (req, res) => {
+app.post("/instagramData", async (req, res) => {
   const { url } = req.body;
   if (url) {
     const result = await ListResultsServices({ data: url });
