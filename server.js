@@ -3,6 +3,7 @@ const ListResultsServices = require("./bot");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { createProxyMiddleware } = require("http-proxy-middleware");
+const timeout = require('connect-timeout')
 const PORT = process.env.PORT || 5000;
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(
     extended: true,
   })
 );
+app.use(timeout('20s'))
 app.use(bodyParser.json());
 app.use(express.json());
 
